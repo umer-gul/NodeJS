@@ -1,5 +1,7 @@
+
 const Joi = require('joi');
 const config = require('config');
+const startupDebug = require('debug')('app:debug');
 const logger = require('./logger');
 const express = require('express');
 const app = express();
@@ -12,7 +14,7 @@ var courses = [
     {id: 4, name: 'course4'}
 ];
 // get configuration setting 
-console.log('Application Password :' + config.get('password'));
+startupDebug('Application Password :' );
 //console.log('Application mail server :'+ config.get('mail.host'));
 // get list of all courses 
 app.get('/api/courses/', (req,res)=> {
