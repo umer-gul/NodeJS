@@ -7,6 +7,10 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(logger);
+
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 var courses = [
     {id: 1, name: 'course1'},
     {id: 2, name: 'course2'},
@@ -15,7 +19,13 @@ var courses = [
 ];
 // get configuration setting 
 startupDebug('Application Password :' );
+
 //console.log('Application mail server :'+ config.get('mail.host'));
+// dynamic html pages
+app.get('/', (req,res)=> {
+    res.render('index', {title: 'My express Html', message: 'Hello'});
+});
+
 // get list of all courses 
 app.get('/api/courses/', (req,res)=> {
     res.send(courses);
